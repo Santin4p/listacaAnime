@@ -6,11 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 
 import Modelo.Anime;
 
-public class AnimeList {
+public class AnimeList{
+	
 	private ArrayList<Anime> listaAnime;
 	final String fichero = "animes.dat";
 	private ObjectOutputStream nuevo;
@@ -24,9 +27,8 @@ public class AnimeList {
 		}
 	}
 	
-	public void guardarAnime(Anime anime) throws FileNotFoundException,
-			IOException {
-		getListaAnime().add(anime);
+	public void guardarAnime(Anime animeIN) throws FileNotFoundException,IOException {
+		getListaAnime().add(animeIN);
 		new AccesoFicheros().escribirObjeto(getListaAnime(), fichero);
 	}
 
@@ -39,13 +41,10 @@ public class AnimeList {
 	}
 
 	public void cargarAnimes() throws ClassNotFoundException, IOException{
-		Anime prueba=new Anime("yuyu", "2", "13");
-		getListaAnime().add(prueba);
-		setAnimes((ArrayList<Anime>) new AccesoFicheros().leerObjeto(fichero));
+			setAnimes((ArrayList<Anime>) new AccesoFicheros().leerObjeto(fichero));
 	}
-	
-	public void crearAnime(String nombre, String sinopsis, String capitulos) throws FileNotFoundException, IOException{
-		Anime instancia=new Anime(nombre, sinopsis, capitulos);
+	public void crearAnime(String nombreIN, String sinopsisIN, String capitulosIN) throws FileNotFoundException, IOException{
+		Anime instancia=new Anime(nombreIN, sinopsisIN, capitulosIN);
 		guardarAnime(instancia);
 	}
 }

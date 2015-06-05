@@ -17,7 +17,6 @@ public class AccesoFicheros {
 		FileInputStream myFile=new FileInputStream(ruta);
 		BufferedInputStream myBuff=new BufferedInputStream(myFile);
 		ObjectInputStream myObject=new ObjectInputStream(myBuff);
-		
 		try {
 			return myObject.readObject();
 		} catch (Exception e) {

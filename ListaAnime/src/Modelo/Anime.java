@@ -1,15 +1,15 @@
 package Modelo;
 
-public class Anime {
+import java.io.Serializable;
+
+public class Anime implements Serializable {
+	
 	private String nombre;
 	private String sinopsis;
 	private String capitulos;
-	private String genero;
-	private boolean estado=false;
 
 	//---
 	public Anime(String nombre, String sinopsis, String capitulos) {
-		super();
 		this.nombre = nombre;
 		this.sinopsis = sinopsis;
 		this.capitulos = capitulos;
@@ -39,13 +39,4 @@ public class Anime {
 	public void setCapitulos(String capitulos) {
 		this.capitulos = capitulos;
 	}
-
-	public boolean isEstado() {
-		return estado;
-	}
-
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-	
 }
