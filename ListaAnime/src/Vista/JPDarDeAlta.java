@@ -1,15 +1,28 @@
 package Vista;
 
 import javax.swing.JPanel;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
+
 import javax.swing.JTextField;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JComboBox;
+
+import Controlador.AnimeList;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class JPDarDeAlta extends JPanel {
 	private JTextField txtNombre;
@@ -19,13 +32,14 @@ public class JPDarDeAlta extends JPanel {
 	private JPanel panel;
 	private JButton btnAyuda;
 	private JComboBox comboBox;
-	private JTextField textField;
+	private JTextField txtCapitulos;
 	private JLabel lblCapitulos;
-
+	private AnimeList nueva;
 	/**
 	 * Create the panel.
 	 */
 	public JPDarDeAlta() {
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{86, 283, 0, 0};
 		gridBagLayout.rowHeights = new int[]{57, 0, 0, 0, 0, 0, 28, 68, 0};
@@ -99,13 +113,13 @@ public class JPDarDeAlta extends JPanel {
 		gbc_lblCapitulos.gridy = 0;
 		panel.add(lblCapitulos, gbc_lblCapitulos);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 0;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		txtCapitulos = new JTextField();
+		GridBagConstraints gbc_txtCapitulos = new GridBagConstraints();
+		gbc_txtCapitulos.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtCapitulos.gridx = 3;
+		gbc_txtCapitulos.gridy = 0;
+		panel.add(txtCapitulos, gbc_txtCapitulos);
+		txtCapitulos.setColumns(10);
 		
 		lblSinopsis = new JLabel("Sinopsis:");
 		lblSinopsis.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -127,6 +141,24 @@ public class JPDarDeAlta extends JPanel {
 		txtSinopsis.setColumns(10);
 		
 		btnDarDeAlta = new JButton("Dar de alta");
+		btnDarDeAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					try {
+						nueva=new AnimeList();
+						nueva.crearAnime(txtNombre.getText(), txtSinopsis.getText(), txtCapitulos.getText());
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				ponerTextosBlanco();
+			}
+		});
 		GridBagConstraints gbc_btnDarDeAlta = new GridBagConstraints();
 		gbc_btnDarDeAlta.anchor = GridBagConstraints.EAST;
 		gbc_btnDarDeAlta.insets = new Insets(0, 0, 0, 5);
@@ -135,5 +167,10 @@ public class JPDarDeAlta extends JPanel {
 		add(btnDarDeAlta, gbc_btnDarDeAlta);
 
 	}
-
+	
+	public void ponerTextosBlanco(){
+		txtNombre.setText("");
+		txtSinopsis.setText("");
+		txtCapitulos.setText("");
+	}
 }
