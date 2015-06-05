@@ -19,6 +19,8 @@ public class JPDarDeAlta extends JPanel {
 	private JPanel panel;
 	private JButton btnAyuda;
 	private JComboBox comboBox;
+	private JTextField textField;
+	private JLabel lblCapitulos;
 
 	/**
 	 * Create the panel.
@@ -66,9 +68,9 @@ public class JPDarDeAlta extends JPanel {
 		gbc_panel.gridy = 3;
 		add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{118, 61, 184, 0};
+		gbl_panel.columnWidths = new int[]{118, 61, 68, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
@@ -87,6 +89,23 @@ public class JPDarDeAlta extends JPanel {
 		gbc_btnAyuda.gridx = 1;
 		gbc_btnAyuda.gridy = 0;
 		panel.add(btnAyuda, gbc_btnAyuda);
+		
+		lblCapitulos = new JLabel("Capitulos:");
+		lblCapitulos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblCapitulos = new GridBagConstraints();
+		gbc_lblCapitulos.insets = new Insets(0, 0, 0, 5);
+		gbc_lblCapitulos.anchor = GridBagConstraints.EAST;
+		gbc_lblCapitulos.gridx = 2;
+		gbc_lblCapitulos.gridy = 0;
+		panel.add(lblCapitulos, gbc_lblCapitulos);
+		
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 3;
+		gbc_textField.gridy = 0;
+		panel.add(textField, gbc_textField);
+		textField.setColumns(10);
 		
 		lblSinopsis = new JLabel("Sinopsis:");
 		lblSinopsis.setFont(new Font("Tahoma", Font.BOLD, 11));
